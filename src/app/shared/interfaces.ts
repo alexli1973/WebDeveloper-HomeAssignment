@@ -5,8 +5,8 @@ export interface Worker {
 
 export interface Flight {
   num: string;
-  from_destination: string;
-  to_destination: string;
+  from: string;
+  to: string;
   from_date: string;
   to_date: string;
   plane: string;

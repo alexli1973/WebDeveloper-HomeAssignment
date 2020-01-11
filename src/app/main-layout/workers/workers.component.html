@@ -1,24 +1,17 @@
-<div *ngIf="workers.length; else loading">
-  <table>
+<div *ngIf="workers.length; else loading" class="workers">
+  <table class="table table-hover table-borderless">
     <thead>
-      <th>#</th>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Action</th>
+      <th scope="col">#</th>
+      <th scope="col">Workers</th>
     </thead>
     <tbody>
     <tr *ngFor="let worker of workers;
      let idx = index"
-     (click)="selectWorker(worker.id)"
+     (click)="selectWorker(worker.id, idx)"
+     [class.active]="idx == selectedRow"
     >
       <td>{{idx + 1}}</td>
-      <td class="worker">{{worker.id}}</td>
       <td>{{worker.name}}</td>
-      <td>
-        <button
-         (click)="selectWorker(worker.id)"
-        >Flight</button>
-      </td>
     </tr>
     </tbody>
   </table>

@@ -1,0 +1,26 @@
+@import '~src/variables.scss';
+
+.flight-details-block {
+  .header {
+    box-sizing: border-box;
+    padding: .75rem;
+    background-color: $primaryColor;
+    color: $thirdColor;
+    font-weight: 700;
+    text-align: center;
+  }
+  .details {
+    padding: .75rem;
+    //border: 1px solid $primaryColor;
+    color: $secondaryColor;
+    .details-line {
+      display: flex;
+      justify-content: space-between;
+      span {
+        margin-right: 1.75em;
+        text-transform: capitalize;
+        font-weight: 700;
+      }
+    }
+  }
+}

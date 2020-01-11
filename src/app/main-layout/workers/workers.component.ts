@@ -12,13 +12,15 @@ export class WorkersComponent implements OnInit, OnDestroy {
   workers: Worker[] = [];
   workerSubscr: Subscription;
   @Output() selectedWorker = new EventEmitter<Worker>();
+  selectedRow: number;
 
   constructor(private apiService: BaseApiService) { }
 
   ngOnInit() {
     this.workerSubscr = this.apiService.getWorkers().subscribe(workers => {
       this.workers = workers;
-      this.selectWorker(workers[0].id);
+      this.selectWorker(workers[0].id, 0);
+      // this.selectRow(0);
     });
   }
 
@@ -28,8 +30,13 @@ export class WorkersComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectWorker(workerId) {
+  selectWorker(workerId, index) {
     this.selectedWorker.emit(workerId);
+    this.selectRow(index);
+  }
+
+  selectRow(index) {
+    this.selectedRow = index;
   }
 
 

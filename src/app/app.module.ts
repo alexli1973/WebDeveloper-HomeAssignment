@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FlightListComponent } from './main-layout/flight-list/flight-list.component';
 import { FlightDetailsComponent } from './main-layout/flight-details/flight-details.component';
 import { TimeFormatPipe } from './shared/time-format.pipe';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TimeFormatPipe } from './shared/time-format.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

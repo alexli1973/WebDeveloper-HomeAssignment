@@ -1,6 +1,5 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
-import {interval} from 'rxjs';
-import {Flight} from '../../shared/interfaces';
+import {Flight, Worker} from '../../shared/interfaces';
 import {Subscription} from 'rxjs';
 import {BaseApiService} from '../../shared/services/base-api.service';
 
@@ -13,9 +12,9 @@ export class FlightListComponent implements OnInit, OnChanges, OnDestroy {
   flights: Flight[] = [];
   flightSubscr: Subscription;
   selectedFlight: Flight;
+  selectedRow: number;
 
-
-  @Input()selectedWorker: Subscription;
+  @Input()selectedWorker: Worker;
 
   constructor(private apiService: BaseApiService) { }
 
@@ -24,8 +23,10 @@ export class FlightListComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     this.flightSubscr = this.apiService.getFlights(this.selectedWorker).subscribe(flights => {
+      // @ts-ignore
       this.flights = flights;
       this.selectedFlight = flights[0];
+      this.selectRow(0);
     });
   }
 
@@ -35,8 +36,13 @@ export class FlightListComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  selectFlight(selectedFlight) {
+  selectFlight(selectedFlight, index) {
     this.selectedFlight = selectedFlight;
+    this.selectRow(index);
+  }
+
+  selectRow(index) {
+    this.selectedRow = index;
   }
 
 }

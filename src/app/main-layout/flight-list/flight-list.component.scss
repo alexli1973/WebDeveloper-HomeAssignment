@@ -1,3 +1,7 @@
 .flight {
   display: flex;
+  .flight-list {
+    min-width: 650px;
+  }
 }
+

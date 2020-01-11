@@ -19,13 +19,13 @@ export class BaseApiService {
     return this.http.get(this.getUrl(url));
   }
 
-  // public getFlights(workerId) {
-  //   return timer(100, 60000).pipe(flatMap(() => {
-  //     return this.http.get(this.getUrl(workerId));
-  //   }));
-  // }
-
-  public getFlights(workerId): Observable<any> {
-    return this.http.get(this.getUrl(workerId));
+  public getFlights(workerId) {
+    return timer(0, 60000).pipe(flatMap(() => {
+      return this.http.get(this.getUrl(workerId));
+    }));
   }
+
+  // public getFlights(workerId): Observable<any> {
+  //   return this.http.get(this.getUrl(workerId));
+  // }
 }

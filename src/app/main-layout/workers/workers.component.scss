@@ -1,5 +1,6 @@
 @import '~src/variables.scss';
-
-.worker {
-  color: $secondaryColor;
+.workers {
+  .table {
+    border-right: 1px solid $primaryColor;
+  }
 }

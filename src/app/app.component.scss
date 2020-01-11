@@ -1,3 +1,21 @@
-tr {
-  cursor: default;
+@import '~src/variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+html, body {
+  font-family: 'Roboto', sans-serif;
 }
+
+.table{
+  thead {
+    th {
+      background-color: $thirdColor;
+      color: $headerColor;
+    }
+
+  }
+}
+.active {
+  background-color: $primaryColor;
+  color: $thirdColor;
+}
+
