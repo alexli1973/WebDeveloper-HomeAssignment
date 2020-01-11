@@ -1,0 +1,29 @@
+<div *ngIf="workers.length; else loading">
+  <table>
+    <thead>
+      <th>#</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let worker of workers;
+     let idx = index"
+     (click)="selectWorker(worker.id)"
+    >
+      <td>{{idx + 1}}</td>
+      <td class="worker">{{worker.id}}</td>
+      <td>{{worker.name}}</td>
+      <td>
+        <button
+         (click)="selectWorker(worker.id)"
+        >Flight</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #loading>
+  <p class="text-center">Loading</p>
+</ng-template>

@@ -1,0 +1,35 @@
+<p>selectedWorker from flight comp : {{selectedWorker}}</p>
+<p>flights : {{flights.length}}</p>
+
+<div class="flight">
+  <div *ngIf="flights.length; else loading" class="flight-list">
+    <table>
+      <thead>
+      <th>Flight Number</th>
+      <th>Origin</th>
+      <th>Origin Date</th>
+      <th>Destination</th>
+      <th>Destination Date</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let flight of flights;
+       let idx = index"
+          (click)="selectFlight(flight)"
+      >
+        <td>{{flight.num}}</td>
+        <td>{{flight.from}}</td>
+        <td>{{flight.from_date}}</td>
+        <td>{{flight.to}}</td>
+        <td>{{flight.to_date}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-flight-details [selectedFlight]="selectedFlight"></app-flight-details>
+</div>
+
+
+<ng-template #loading>
+  <p class="text-center">Loading</p>
+</ng-template>
+

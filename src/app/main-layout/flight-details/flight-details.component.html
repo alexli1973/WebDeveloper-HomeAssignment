@@ -1,0 +1,7 @@
+<div class="flight-details" *ngIf="selectedFlight">
+<!--  flightDetails:{{selectedFlight | json}}-->
+  <p>{{selectedFlight.plane}}</p>
+  <p>{{selectedFlight.duration}}</p>
+  <p>{{selectedFlight.from_date}}</p>
+  <p>Time: {{selectedFlight.to_gate | timeFormat}}</p>
+</div>

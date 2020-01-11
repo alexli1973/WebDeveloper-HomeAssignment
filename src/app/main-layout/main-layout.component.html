@@ -1,0 +1,14 @@
+<!--<div class="main-panel">-->
+<!--  <div class="worker-panel">-->
+<!--    <app-workers (selectedWorker)="selectWorker($event)"></app-workers>-->
+<!--  </div>-->
+<!--  <div class="flight-panel">-->
+<!--    <app-flight-list [selectedWorker]="selectedWorker"></app-flight-list>-->
+<!--  </div>-->
+<!--  Main comp selectedWorker: {{selectedWorker | json}}-->
+<!--</div>-->
+<div class="main-panel">
+    <app-workers (selectedWorker)="selectWorker($event)"></app-workers>
+    <app-flight-list [selectedWorker]="selectedWorker"></app-flight-list>
+  Main comp selectedWorker: {{selectedWorker | json}}
+</div>
