@@ -1,6 +1,6 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Flight, Worker} from '../../shared/interfaces';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {BaseApiService} from '../../shared/services/base-api.service';
 
 @Component({
@@ -8,8 +8,9 @@ import {BaseApiService} from '../../shared/services/base-api.service';
   templateUrl: './flight-list.component.html',
   styleUrls: ['./flight-list.component.scss']
 })
-export class FlightListComponent implements OnInit, OnChanges, OnDestroy {
+export class FlightListComponent implements OnInit, OnChanges, OnDestroy, AfterViewChecked {
   flights: Flight[] = [];
+  flights$: Observable<[]>;
   flightSubscr: Subscription;
   selectedFlight: Flight;
   selectedRow: number;
@@ -21,13 +22,23 @@ export class FlightListComponent implements OnInit, OnChanges, OnDestroy {
   ngOnInit() {
   }
 
-  ngOnChanges() {
-    this.flightSubscr = this.apiService.getFlights(this.selectedWorker).subscribe(flights => {
-      // @ts-ignore
-      this.flights = flights;
-      this.selectedFlight = flights[0];
-      this.selectRow(0);
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.flightSubscr) {
+      this.flightSubscr.unsubscribe();
+    }
+    if (this.selectedWorker) {
+      this.flightSubscr = this.apiService.getFlights(this.selectedWorker).subscribe(flights => {
+        // @ts-ignore
+        this.flights = flights;
+        this.flights$ = flights;
+        this.selectedFlight = flights[0];
+        this.selectRow(0);
+      });
+    }
+
+  }
+
+  ngAfterViewChecked(): void {
   }
 
   ngOnDestroy() {

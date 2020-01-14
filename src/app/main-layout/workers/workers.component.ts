@@ -25,6 +25,7 @@ export class WorkersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    debugger
     if (this.workerSubscr) {
       this.workerSubscr.unsubscribe();
     }

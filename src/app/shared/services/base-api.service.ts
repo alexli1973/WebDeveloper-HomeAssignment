@@ -19,8 +19,8 @@ export class BaseApiService {
     return this.http.get(this.getUrl(url));
   }
 
-  public getFlights(workerId) {
-    return timer(0, 60000).pipe(flatMap(() => {
+  public getFlights(workerId): Observable<any> {
+    return timer(0, 20000).pipe(flatMap(() => {
       return this.http.get(this.getUrl(workerId));
     }));
   }
